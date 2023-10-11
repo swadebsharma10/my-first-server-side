@@ -23,6 +23,13 @@ app.get('/users', (req, res)=>{
     res.send(users)
 })
 
+// posted data come from client side
+app.get('/users', (req, res)=>{
+  console.log('post api hitting')
+    console.log(req.body)
+})
+
+
 app.listen(port, () => {
   console.log(`Users Management listening on port ${port}`)
 })
