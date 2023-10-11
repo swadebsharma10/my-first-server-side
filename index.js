@@ -4,6 +4,10 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 
+// middleware
+app.use(cors())
+app.use(express.json());
+
 const users =[
     {id:1, name: 'Sabila', email: 'sabila@gmail.com'},
     {id:2, name: 'Sabnur', email: 'sabnur@gmail.com'},
@@ -11,8 +15,7 @@ const users =[
     {id:4, name: 'Sabila', email: 'sabila@gmail.com'},
 ]
 
-// middleware
-app.use(cors())
+
 
 app.get('/', (req, res) => {
   res.send('users management is Running')
@@ -24,9 +27,14 @@ app.get('/users', (req, res)=>{
 })
 
 // posted data come from client side
-app.get('/users', (req, res)=>{
-  console.log('post api hitting')
+app.get('/users', (req, res) => {
+     console.log('post api hitting')
     console.log(req.body)
+    const newUser = req.body;
+    newUser.id = users.length + 1;
+    users.push(newUser);
+
+    res.send(newUser)
 })
 
 
