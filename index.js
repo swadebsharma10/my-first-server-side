@@ -27,9 +27,8 @@ app.get('/users', (req, res)=>{
 })
 
 // posted data come from client side
-app.get('/users', (req, res) => {
-     console.log('post api hitting')
-    console.log(req.body)
+app.post('/users', (req, res) => {
+     
     const newUser = req.body;
     newUser.id = users.length + 1;
     users.push(newUser);
